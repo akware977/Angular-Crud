@@ -122,11 +122,15 @@
                 <img [src]="employee.photoPath" height="200" width="200" *ngIf="previewPhoto" />
             </div>
 
+            <!-- ngModelGroup="passwordGroup" -->
+            <div ngModelGroup="passwordGroup"
+                [class.has-error]="confirmPassword.touched && confirmPassword.invalid && !confirmPassword.errors?.required" >
             <!-- Password-->
             <div class="form-group" [class.has-error]="password.touched && password.invalid">
                 <label for="password" class="control-label">Password</label>
                 <input type="text" class="form-control" name="password" required
-                    [(ngModel)]="employee.password" #password="ngModel" >
+                    [(ngModel)]="employee.password" #password="ngModel" 
+                    (input)="confirmPassword.control.updateValueAndValidity()" >
                 <span class="help-block" *ngIf="password.touched && password.invalid">
                     Password is required
                 </span>
@@ -146,6 +150,7 @@
                 </span>
                 
             </div>
+            </div> <!-- /password group ngModel-->
 
         </div> <!-- Panel Body-->
         <div class="panel-footer">
