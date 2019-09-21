@@ -122,6 +122,31 @@
                 <img [src]="employee.photoPath" height="200" width="200" *ngIf="previewPhoto" />
             </div>
 
+            <!-- Password-->
+            <div class="form-group" [class.has-error]="password.touched && password.invalid">
+                <label for="password" class="control-label">Password</label>
+                <input type="text" class="form-control" name="password" required
+                    [(ngModel)]="employee.password" #password="ngModel" >
+                <span class="help-block" *ngIf="password.touched && password.invalid">
+                    Password is required
+                </span>
+            </div>
+
+            <!-- Confirm Password-->
+            <div class="form-group" [class.has-error]="confirmPassword.touched && confirmPassword.invalid">
+                <label for="confirmPassword" class="control-label">Confirm Password</label>
+                <input type="text" class="form-control" name="confirmPassword" appConfirmEqualValidator="password"
+                    required [(ngModel)]="employee.confirmPassword" #confirmPassword="ngModel">
+                <span class="help-block" *ngIf="confirmPassword.touched && confirmPassword.errors?.required">
+                    Confirm Password is required
+                </span>
+                <span class="help-block" *ngIf="confirmPassword.touched && 
+                     confirmPassword.errors?.notEqual && !confirmPassword.errors?.required">
+                        Password and confirmPassword does not matched.
+                </span>
+                
+            </div>
+
         </div> <!-- Panel Body-->
         <div class="panel-footer">
             <button type="submit" class="btn btn-primary" [disabled]="employeeForm.invalid">Save</button>
