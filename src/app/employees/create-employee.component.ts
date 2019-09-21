@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms'
 import { Department } from 'src/models/department.model';
 import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
-import { Employee } from '../models/employee.model';
 import { Employee } from 'src/models/employee.model';
 
 @Component({

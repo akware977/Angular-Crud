@@ -81,16 +81,21 @@
                 </div>
             </div>
             <!-- Select Department-->
-            <div class="form-group">
-                <label for="department">
+            <div class="form-group" [class.has-error]="department.touched && department.errors?.defaultSelected">
+                <label for="department" class="control-label">
                     Department
                 </label>
-                <select id="department" name="department" [(ngModel)]="employee.department" class="form-control">
+                <option value="-1">Select Department</option>
+                <select appSelectValidator id="department" name="department" [(ngModel)]="employee.department" 
+                    class="form-control" #department="ngModel">
                     <option *ngFor="let dept of departments" [value]="dept.id">
                         {{ dept.name }}
                     </option>
 
                 </select>
+                <span class="help-block" *ngIf="department.touched && department.errors?.defaultSelected">
+                    Department is required
+                </span>
             </div>
             <!-- Date Picker-->
             <div class="row">
